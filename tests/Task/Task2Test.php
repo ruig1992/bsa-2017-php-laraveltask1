@@ -20,16 +20,21 @@ class Task2Test extends TestCase
         $this->carSharingService = $this->app->make(CarSharing::class);
     }
 
-    public function test_should_create_service()
+    public function test_cars_response()
     {
-        $this->assertInstanceOf(CarSharingService::class, $this->carSharingService);
+        $cars = $this->carSharingService->getAllCars();
+        $this->visit('/cars')->assertResponseOk()->seeJson($cars);
     }
 
-    public function test_should_return_data()
+    public function test_cars_random_response()
     {
-        $car = $this->carSharingService->getRandomCar();
-        $this->assertNotEmpty($car);
-        $this->assertArrayHasKey('model', $car);
-        $this->assertArrayHasKey('image', $car);
+        $cars = $this->carSharingService->getAllCars();
+        $crawler = $this->visit('/cars/random')->assertResponseOk()->crawler();
+        $car = [
+            'model' => $crawler->filter('.cars-container > h2')->first()->text(),
+            'image' => $crawler->filter('.cars-container > img')->first()->attr('src')
+        ];
+        $this->assertContains($car, $cars);
     }
+
 }
