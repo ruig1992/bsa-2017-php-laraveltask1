@@ -2,7 +2,7 @@
 
 namespace Tests\Tasks;
 
-use Tests\TestCase;
+use Tests\BrowserKitTestCase as TestCase;
 use App\Services\CarSharingService;
 use App\Services\Contracts\CarSharing;
 
