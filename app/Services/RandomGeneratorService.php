@@ -6,7 +6,7 @@ use App\Services\Contracts\RandomGenerator;
 
 class RandomGeneratorService implements RandomGenerator
 {
-    public function getRandomInt($from, $to): int
+    public function getRandomInt(int $from, int $to): int
     {
        return mt_rand($from, $to);
     }
