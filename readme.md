@@ -18,6 +18,12 @@ cd bsa-2017-php-laraveltask1
 composer install
 ```
 
+Вам потребуется файл .env в корневой папке приложения.
+```
+cp .env.example .env
+php artisan key:generate
+```
+
 Также рекомендуется использовать Homestead для поднятия приложения.
 
 #### Задания
