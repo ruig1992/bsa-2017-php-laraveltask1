@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Services\RandomGeneratorService;
+use App\Services\Contracts\RandomGenerator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Registration of RandomGenerator in AppServiceProvider
+        $this->app->bind(RandomGenerator::class, RandomGeneratorService::class);
     }
 }
