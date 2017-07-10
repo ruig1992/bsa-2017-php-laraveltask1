@@ -32,11 +32,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Registration of RandomGenerator in AppServiceProvider
+        // Registration of RandomGenerator
         $this->app->bind(RandomGenerator::class, RandomGeneratorService::class);
-        // Registration of CarSharing in AppServiceProvider
+        // Registration of CarSharing
         $this->app->bind(CarSharing::class, CarSharingService::class);
-        // Registration of CarRepository in AppServiceProvider
+        // Registration of Repository
         $this->app->bind(Repository::class, CarRepository::class);
     }
 }
