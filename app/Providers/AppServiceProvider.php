@@ -4,8 +4,14 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Services\RandomGeneratorService;
-use App\Services\Contracts\RandomGenerator;
+use App\Repositories\CarRepository;
+use App\Repositories\Contracts\Repository;
+use App\Services\{
+    CarSharingService,
+    RandomGeneratorService,
+    Contracts\CarSharing,
+    Contracts\RandomGenerator
+};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +34,9 @@ class AppServiceProvider extends ServiceProvider
     {
         // Registration of RandomGenerator in AppServiceProvider
         $this->app->bind(RandomGenerator::class, RandomGeneratorService::class);
+        // Registration of CarSharing in AppServiceProvider
+        $this->app->bind(CarSharing::class, CarSharingService::class);
+        // Registration of CarRepository in AppServiceProvider
+        $this->app->bind(Repository::class, CarRepository::class);
     }
 }

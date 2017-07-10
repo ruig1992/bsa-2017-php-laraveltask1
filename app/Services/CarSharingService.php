@@ -2,27 +2,43 @@
 
 namespace App\Services;
 
+use App\Repositories\Contracts\Repository;
+
 use App\Services\Contracts\CarSharing;
 use App\Services\Contracts\RandomGenerator;
 
 class CarSharingService implements CarSharing
 {
     /**
-     * Get all cars from CarRepository
+     * Cars repository
+     * @var Repository
+     */
+    protected $repository;
+
+    /**
+     * @param Repository $repository
+     */
+    public function __construct(Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * Get all cars from repository
      * @return array
      */
     public function getAllCars()
     {
-        return app('CarRepository')->all();
+        return $this->repository->all();
     }
 
     /**
-     * Get random car from CarRepository
+     * Get the random car from repository
      * @return array
      */
     public function getRandomCar()
     {
-        $cars = app('CarRepository')->all();
+        $cars = $this->repository->all();
 
         return $cars[
             app(RandomGenerator::class)->getRandomInt(1, count($cars))
