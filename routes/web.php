@@ -26,5 +26,5 @@ Route::get('/cars', function () {
 Route::get('/cars/random', function () {
     $carSharingService = app(CarSharing::class);
 
-    dd($carSharingService->getRandomCar());
+    return view('car', $carSharingService->getRandomCar());
 });
