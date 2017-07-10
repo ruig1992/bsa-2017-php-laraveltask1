@@ -38,10 +38,11 @@ class CarSharingService implements CarSharing
      */
     public function getRandomCar()
     {
-        $cars = $this->repository->all();
+        $cars = $this->getAllCars();
+        $randomGenerator = app(RandomGenerator::class);
 
         return $cars[
-            app(RandomGenerator::class)->getRandomInt(1, count($cars) - 1)
+            $randomGenerator->getRandomInt(0, count($cars) - 1)
         ];
     }
 }
