@@ -11,12 +11,16 @@
 |
 */
 
+use App\Services\Contracts\CarSharing;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/cars', function () {
+    $carSharingService = app(CarSharing::class);
 
+    return response()->json($carSharingService->getAllCars());
 });
 
 Route::get('/cars/random', function () {
