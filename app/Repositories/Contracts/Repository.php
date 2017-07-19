@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-interface Repository {
+interface Repository
+{
     public function all();
 }

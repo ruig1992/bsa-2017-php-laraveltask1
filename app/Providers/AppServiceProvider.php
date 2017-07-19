@@ -1,18 +1,20 @@
 <?php
-
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
-use App\Repositories\CarRepository;
-use App\Repositories\Contracts\Repository;
 use App\Services\{
     CarSharingService,
     RandomGeneratorService,
     Contracts\CarSharing,
     Contracts\RandomGenerator
 };
+use App\Repositories\CarRepository;
+use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\Repository;
 
+/**
+ * Class AppServiceProvider
+ * @package App\Providers
+ */
 class AppServiceProvider extends ServiceProvider
 {
     /**

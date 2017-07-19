@@ -1,12 +1,14 @@
 <?php
-
 namespace App\Services;
 
-use App\Repositories\Contracts\Repository;
-
 use App\Services\Contracts\CarSharing;
+use App\Repositories\Contracts\Repository;
 use App\Services\Contracts\RandomGenerator;
 
+/**
+ * Class CarSharingService
+ * @package App\Services
+ */
 class CarSharingService implements CarSharing
 {
     /**
@@ -14,20 +16,26 @@ class CarSharingService implements CarSharing
      * @var Repository
      */
     protected $repository;
+    /**
+     * Random generator
+     * @var RandomGenerator
+     */
+    protected $generator;
 
     /**
      * @param Repository $repository
      */
-    public function __construct(Repository $repository)
+    public function __construct(Repository $repository, RandomGenerator $generator)
     {
         $this->repository = $repository;
+        $this->generator = $generator;
     }
 
     /**
      * Get all cars from repository
      * @return array
      */
-    public function getAllCars()
+    public function getAllCars(): array
     {
         return $this->repository->all();
     }
@@ -36,13 +44,12 @@ class CarSharingService implements CarSharing
      * Get the random car from repository
      * @return array
      */
-    public function getRandomCar()
+    public function getRandomCar(): array
     {
         $cars = $this->getAllCars();
-        $randomGenerator = app(RandomGenerator::class);
 
         return $cars[
-            $randomGenerator->getRandomInt(0, count($cars) - 1)
+            $this->generator->getRandomInt(0, count($cars) - 1)
         ];
     }
 }
